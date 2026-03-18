@@ -11,7 +11,7 @@ export default function ModuloEmpleado() {
   const [estadoCivil, setEstadoCivil] = useState('S');
   const [fechaInicio, setFechaInicio] = useState(new Date().getFullYear());
   
-  // NUEVO: Estado para controlar si estamos editando
+  // Editar---------------------------------------
   const [editandoId, setEditandoId] = useState(null);
 
   useEffect(() => {
@@ -41,7 +41,7 @@ export default function ModuloEmpleado() {
     };
 
     if (editandoId) {
-      // MODO EDITAR
+      // Confirmar edición--------------------------------
       const { error } = await supabase
         .from('empleado')
         .update(datos)
@@ -53,7 +53,7 @@ export default function ModuloEmpleado() {
         setEditandoId(null);
       }
     } else {
-      // MODO GUARDAR NUEVO
+      // Guardar edición--------------------------------
       const { error } = await supabase
         .from('empleado')
         .insert([datos]);
@@ -105,7 +105,7 @@ export default function ModuloEmpleado() {
             {editandoId ? 'Editando Registro' : 'Nuevo Registro'}
           </h2>
           <form onSubmit={guardarEmpleado} className="space-y-4">
-            {/* ... (Tus inputs se mantienen iguales) ... */}
+            {/* ...... */}
             <div>
               <label className="block text-xs text-gray-400 mb-1">Nombre Completo:</label>
               <input type="text" value={nombre} onChange={e => setNombre(e.target.value)} className="w-full bg-[#1e293b] border border-cyan-900/20 p-2.5 rounded-lg outline-none focus:border-cyan-500" required />
@@ -160,7 +160,7 @@ export default function ModuloEmpleado() {
           </form>
         </div>
 
-        {/* mostrar tabla con ACCIONES */}
+        {/* tabla acciones*/}
         <div className="lg:col-span-2 bg-[#020617] border border-blue-900/30 rounded-xl overflow-hidden shadow-2xl">
           <table className="w-full text-left border-collapse">
             <thead>
